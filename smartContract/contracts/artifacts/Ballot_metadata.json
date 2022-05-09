@@ -1,0 +1,213 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "getInfo",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "voter",
+						"type": "address"
+					}
+				],
+				"name": "giveRightToVote",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "proposals",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Total_Votes",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Votes_District0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Votes_District1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Votes_District2",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Votes_District3",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Votes_District4",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Votes_District5",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Votes_District6",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Votes_District7",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Votes_District8",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Votes_District9",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_info",
+						"type": "string"
+					}
+				],
+				"name": "setInfo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "proposal",
+						"type": "uint256"
+					}
+				],
+				"name": "vote",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "voters",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "weight",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "voted",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "district",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "vote",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Implements voting process along with vote delegation",
+			"kind": "dev",
+			"methods": {},
+			"title": "Ballot",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"3_Ballot.sol": "Ballot"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"3_Ballot.sol": {
+			"keccak256": "0x067576549b58e3ea203d47ed463027cee86857d78bd56036eb8b0cd723b7144d",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://04ec8685304e6386e824b906326f53af16767360051045e2e3bd0a4233cfab74",
+				"dweb:/ipfs/QmQnnbNtdcz33fqDSYuNBwp1jZTqLsbyJFDc9q7AqtvQL6"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,14 +1,15 @@
-const contractAddress = "0x70401a9cA7F448123fcf3dEC0Ca1123f12C73A57";
+const contractAddress = "0x05A956ab48C7bDf9227DD134f81c77282aD094dD";
 
 async function getABI() {
-  let abi;
+  let abi_;
 
-  await fetch("./smartContract/contracts/artifacts/Test.json")
+  await fetch("./smartContract/contracts/artifacts/Ballot.json")
     .then((response) => response.json())
-    .then((text) => (abi = text.abi))
-    .then((abi) => console.log(abi));
+    .then((text) => (abi_ = text.abi))
+    //.then(abi=>abi1=abi)
+    //.then((abi) => console.log(abi));
 
-  return abi;
+  return abi_;
 }
 
 
@@ -22,10 +23,10 @@ async function getProvider() {
 }
 
 async function fetchAccounts() {
-  var provider = "http://127.0.0.1:7545";
-  var web3Provider = new Web3.providers.HttpProvider(provider);
-  var web3 = new Web3(web3Provider);
-
+  // var provider = "http://127.0.0.1:7545";
+  // var web3Provider = new Web3.providers.HttpProvider(provider);
+  // var web3 = new Web3(web3Provider);
+  await this.getProvider()
   let accounts;
   await web3.eth.getAccounts().then((result) => {
     accounts = result;
@@ -64,4 +65,20 @@ async function showAccounts() {
     addCell(row, account);
   });
 }
+
+async function start() {
+  let abi_
+  await this.getProvider()
+  await this.getABI().then((result) => {
+    abi = result;
+  });
+
+  const ballot = new web3.eth.Contract(abi, contractAddress)
+  ballot.methods.getInfo().call().then(data => {console.log(data)})
+  // web3.eth.defaultAccount=accounts[0]
+  // ballot.forEach()
+
+
+}
+
 
