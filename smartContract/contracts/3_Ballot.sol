@@ -43,7 +43,7 @@ contract Ballot {
     Proposal[] private proposals;
 
     
-    function random() private view returns(uint){
+    function random_district() private view returns(uint){
         return uint(keccak256(abi.encodePacked(block.timestamp,block.difficulty,  
         msg.sender))) % 10;
     }
@@ -115,7 +115,7 @@ contract Ballot {
     //     voters[voter].weight = 1;
     //     require(count<3,"Reached max voters.");
     //     incrementCounter();
-    //     voters[voter].district=random();
+    //     voters[voter].district=random_district();
     // }
 
     int private count2 = 0;
@@ -130,9 +130,9 @@ contract Ballot {
         );
         require(voters[msg.sender].weight == 0);
         voters[msg.sender].weight = 1;
-        require(count<3,"Reached max voters.");
+        //require(count<3,"Reached max voters.");
         incrementCounter();
-        voters[msg.sender].district=random();
+        voters[msg.sender].district=random_district();
         //end new
         Voter storage sender = voters[msg.sender];
         //Proposal storage prop = omg[msg.sender];
@@ -140,13 +140,13 @@ contract Ballot {
         require(!sender.voted, "Already voted.");
         sender.voted = true;
         sender.vote = proposal;
-        // sender.district=random();
+        // sender.district=random_district();
         // xax[sender.district][msg.sender]= Proposal(name,voteCount);
 
         // If 'proposal' is out of the range of the array,
         // this will throw automatically and revert all
         // changes.
-        //proposals[proposal].district=random();
+        //proposals[proposal].district=random_district();
         proposals[proposal].Total_Votes += sender.weight;
         if (sender.district==0){proposals[proposal].Votes_District0 += sender.weight;}
         else if (sender.district==1){proposals[proposal].Votes_District1 += sender.weight;}
@@ -166,10 +166,8 @@ contract Ballot {
     function res(uint _id) public view returns(Proposal memory){
         return proposals[_id];
     }
-    /** 
-     * @dev Computes the winning proposal taking all previous votes into account.
-     * @return winningProposal_ index of winning proposal in the proposals array
-     */
+}
+
     // function winningProposal() public view
     //         returns (uint winningProposal_)
     // {
@@ -184,15 +182,11 @@ contract Ballot {
     //     }
     // }
 
-    /** 
-     * @dev Calls winningProposal() function to get the index of the winner contained in the proposals array and then
-     * @return winnerName_ the name of the winner
-     */
 //     function winnerName() public view
 //             returns (string memory winnerName_)
 //     {
 //         require(count2==count+1,"Everyone that has the right must vote.");
 //         winnerName_ = proposals[winningProposal()].name;
 //     }
-}
+// }
 
