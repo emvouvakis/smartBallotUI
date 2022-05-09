@@ -1,4 +1,4 @@
-const contractAddress = "0x05A956ab48C7bDf9227DD134f81c77282aD094dD";
+const contractAddress = "0xD590A904049Ebf83c77a445AF266bed500AfA194";
 
 async function getABI() {
   let abi_;
@@ -6,16 +6,13 @@ async function getABI() {
   await fetch("./smartContract/contracts/artifacts/Ballot.json")
     .then((response) => response.json())
     .then((text) => (abi_ = text.abi))
-    //.then(abi=>abi1=abi)
-    //.then((abi) => console.log(abi));
 
   return abi_;
 }
 
 
 async function getProvider() {
-  // const web3 = new Web3("http://127.0.0.1:8545");
-  // const web3 = new Web3(Web3.givenProvider || "http://127.0.0.1:8545");
+
   var provider = "http://127.0.0.1:7545";
   var web3Provider = new Web3.providers.HttpProvider(provider);
   var web3 = new Web3(web3Provider);
@@ -66,19 +63,61 @@ async function showAccounts() {
   });
 }
 
-async function start() {
+async function fetchResults(candidate){
+  let data1;
+  let ballot = new web3.eth.Contract(abi, contractAddress)
+  await ballot.methods.res(candidate).call().then(data=>data1=data)
+
+  return data1
+}
+
+
+async function fetchAllResults(){
+
+  function candidates_range(size, startAt = 0) {
+    return [...Array(size).keys()].map(i => i + startAt);
+  }
+  
+  const a=candidates_range(5,0)
+    
+  let all_data=[];
+  a.forEach(async function(num) {
+    let data2;
+    await this.fetchResults(num).then(result=>{data2=result})
+    all_data.push(data2)})
+  return all_data
+}
+
+
+async function showResults() {
   let abi_
   await this.getProvider()
   await this.getABI().then((result) => {
     abi = result;
   });
+  
+  var tableContainer = document.getElementById("table-container"); // pernas to id toy table
+  tableContainer.style.visibility = "visible"; // kanis ton pinaka orato
 
-  const ballot = new web3.eth.Contract(abi, contractAddress)
-  ballot.methods.getInfo().call().then(data => {console.log(data)})
-  // web3.eth.defaultAccount=accounts[0]
-  // ballot.forEach()
+  var table = document.getElementById("accounts-table");
 
+  let all_data;
+  await this.fetchAllResults().then(result=>all_data=result)
 
+  console.log(all_data);
+
+  function addCell(tr, text) {
+      var td = tr.insertCell();
+      td.textContent = text;
+      return td;
+  }
+
+  // insert data
+  all_data.forEach(element=>console.log(element))
+    // var row = table.insertRow();
+    // addCell(row, omg);
+    // addCell(row, account);
+  // });
 }
 
 
