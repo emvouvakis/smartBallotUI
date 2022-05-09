@@ -26,85 +26,79 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "voter",
-						"type": "address"
-					}
-				],
-				"name": "giveRightToVote",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "_id",
 						"type": "uint256"
 					}
 				],
-				"name": "proposals",
+				"name": "res",
 				"outputs": [
 					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "Total_Votes",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "Votes_District0",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "Votes_District1",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "Votes_District2",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "Votes_District3",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "Votes_District4",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "Votes_District5",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "Votes_District6",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "Votes_District7",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "Votes_District8",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "Votes_District9",
-						"type": "uint256"
+						"components": [
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Total_Votes",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Votes_District0",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Votes_District1",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Votes_District2",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Votes_District3",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Votes_District4",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Votes_District5",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Votes_District6",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Votes_District7",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Votes_District8",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Votes_District9",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Ballot.Proposal",
+						"name": "",
+						"type": "tuple"
 					}
 				],
 				"stateMutability": "view",
@@ -201,11 +195,11 @@
 	},
 	"sources": {
 		"3_Ballot.sol": {
-			"keccak256": "0x067576549b58e3ea203d47ed463027cee86857d78bd56036eb8b0cd723b7144d",
+			"keccak256": "0x3ebeb4ecd5ee26775cc4877b8eae37e93d7c0f598e7b8da855ca3548acf46644",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://04ec8685304e6386e824b906326f53af16767360051045e2e3bd0a4233cfab74",
-				"dweb:/ipfs/QmQnnbNtdcz33fqDSYuNBwp1jZTqLsbyJFDc9q7AqtvQL6"
+				"bzz-raw://3109474f1bd5f4015bad468cdbffb93f94a919e5d963e531816299fe70976502",
+				"dweb:/ipfs/QmbjSWBRXmEVBjC6EQaqzS5GPFQcJXBa6t82vGJ655HyUS"
 			]
 		}
 	},

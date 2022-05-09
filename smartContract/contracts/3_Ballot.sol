@@ -40,7 +40,7 @@ contract Ballot {
     // mapping(uint => mapping(address => Proposal)) public xax;
 
 
-    Proposal[] public proposals;
+    Proposal[] private proposals;
 
     
     function random() private view returns(uint){
@@ -102,27 +102,38 @@ contract Ballot {
     }
 
 
-    function giveRightToVote(address voter) public {
-        require(
-            msg.sender == chairperson,
-            "Only chairperson can give right to vote."
-        );
-        require(
-            !voters[voter].voted,
-            "The voter already voted."
-        );
-        require(voters[voter].weight == 0);
-        voters[voter].weight = 1;
-        require(count<3,"Reached max voters.");
-        incrementCounter();
-        voters[voter].district=random();
-    }
+    // function giveRightToVote(address voter) public {
+    //     require(
+    //         msg.sender == chairperson,
+    //         "Only chairperson can give right to vote."
+    //     );
+    //     require(
+    //         !voters[voter].voted,
+    //         "The voter already voted."
+    //     );
+    //     require(voters[voter].weight == 0);
+    //     voters[voter].weight = 1;
+    //     require(count<3,"Reached max voters.");
+    //     incrementCounter();
+    //     voters[voter].district=random();
+    // }
 
     int private count2 = 0;
     function incrementCounter2() private {
         count2 += 1;
     }
     function vote(uint proposal) public {
+        //new
+        require(
+            !voters[msg.sender].voted,
+            "The voter already voted."
+        );
+        require(voters[msg.sender].weight == 0);
+        voters[msg.sender].weight = 1;
+        require(count<3,"Reached max voters.");
+        incrementCounter();
+        voters[msg.sender].district=random();
+        //end new
         Voter storage sender = voters[msg.sender];
         //Proposal storage prop = omg[msg.sender];
         require(sender.weight != 0, "Has no right to vote");
@@ -152,6 +163,9 @@ contract Ballot {
         incrementCounter2();
     }
 
+    function res(uint _id) public view returns(Proposal memory){
+        return proposals[_id];
+    }
     /** 
      * @dev Computes the winning proposal taking all previous votes into account.
      * @return winningProposal_ index of winning proposal in the proposals array
