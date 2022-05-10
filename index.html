@@ -7,35 +7,31 @@
     <link rel="stylesheet" href="style.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Ergasia Patsakis</title>
+    <title>Smart Contract</title>
   </head>
-  <body>
+  
+  <body id="body">
 
     <div id="header">
 
-      <h1>Voting</h1>
+      <h1>Ballot</h1>
 
-      <h1>
-        <div class="btn-toolbar" role="toolbar">
-          <div class="btn-group mr-2" role="group" aria-label="Third group">
-            <button id="btn-accounts" class="btn btn-secondary" onclick="showAccounts()">Addresses</button>
-            <!-- <div class="container mt-4" id="address"></div> -->
-          </div> 
-          <div class="btn-group mr-2" role="group" aria-label="Third group">
-            <button id="btn-accounts" class="btn btn-secondary" onclick="start_voting()" >Start</button>
-            <!-- <div class="container mt-4" id="address"></div> -->
-          </div>
-          <div class="btn-group mr-2" role="group" aria-label="Third group">
-            <button id="btn-accounts" class="btn btn-secondary" onclick="showResults()">Results</button>
-            <!-- <div class="container mt-4" id="address"></div> -->
-          </div>
+
+      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar">
+        <div class="btn-group mr-4" role="group" aria-label="First group">
+          <button id="btn-accounts" class="btn btn-primary"  onclick="showAccounts()">Addresses</button>
+          <button id="btn-accounts" class="btn btn-primary" onclick="start_voting()" >Start</button>
+          <button id="btn-accounts" class="btn btn-primary" onclick="showResults()">Results</button>
         </div>
-      </h1>
+      </div>
+
 
     </div>
 
     <div id="table-container" class="container" style="visibility: hidden;">
-      <table id="accounts-table" class="table"></table>
+      <table id="accounts-table" class="table table-dark"></table>
+      
+      
     </div>
 
     <!-- <div class="container">

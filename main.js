@@ -79,24 +79,25 @@ async function showResults(){
     td.textContent = text;
     return td;
 }
-
-  var row = table.insertRow();
-  addCell(row, 'Candidates:');
-  addCell(row, "Total Votes:")
-  addCell(row, "District 0:")
-  addCell(row, "District 1:")
-  addCell(row, "District 2:")
-  addCell(row, "District 3:")
-  addCell(row, "District 4:")
-  addCell(row, "District 5:")
-  addCell(row, "District 6:")
-  addCell(row, "District 7:")
-  addCell(row, "District 8:")
-  addCell(row, "District 9:")
+  var head = table.createTHead();
+  var header = head.insertRow(0)
+  addCell(header, 'Candidates:');
+  addCell(header, "Total Votes:")
+  addCell(header, "District 0:")
+  addCell(header, "District 1:")
+  addCell(header, "District 2:")
+  addCell(header, "District 3:")
+  addCell(header, "District 4:")
+  addCell(header, "District 5:")
+  addCell(header, "District 6:")
+  addCell(header, "District 7:")
+  addCell(header, "District 8:")
+  addCell(header, "District 9:")
 
   for (let i=0; i<5; i++){
     let data2;
-    var row = table.insertRow();
+    var body= table.createTBody()
+    var row = body.insertRow();
 
     await ballot.methods.res(i).call().then(result=>data=result)
 
