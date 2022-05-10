@@ -1,4 +1,4 @@
-const contractAddress = "0x338736c52B280F46917E07E2e8a34e1758EC70Cf";
+const contractAddress = "0xA2442A5400372DB262647FDEF2366928a9Bc7325";
 
 async function getABI() {
   let abi_;
@@ -64,61 +64,54 @@ async function showAccounts() {
 }
 
 async function fetchResults(candidate){
-  let data1;
   let ballot = new web3.eth.Contract(abi, contractAddress)
   await ballot.methods.res(candidate).call().then(data=>data1=data)
 
   return data1
 }
 
-
-async function fetchAllResults(){
-
-  function candidates_range(size, startAt = 0) {
-    return [...Array(size).keys()].map(i => i + startAt);
-  }
-  
-  const a=candidates_range(5,0)
-    
-  let all_data=[];
-  a.forEach(async function(num) {
-    let data2;
-    await this.fetchResults(num).then(result=>{data2=result})
-    all_data.push(data2)})
-  return all_data
-}
-
-
-async function showResults() {
+async function fetchAllResults2(){
   let abi_
   await this.getProvider()
   await this.getABI().then((result) => {
     abi = result;
   });
-  
+
   var tableContainer = document.getElementById("table-container"); // pernas to id toy table
   tableContainer.style.visibility = "visible"; // kanis ton pinaka orato
 
   var table = document.getElementById("accounts-table");
-
-  let all_data;
-  await this.fetchAllResults().then(result=>all_data=result)
-
-  console.log(all_data);
-
   function addCell(tr, text) {
-      var td = tr.insertCell();
-      td.textContent = text;
-      return td;
-  }
-
-  // insert data
-  all_data.forEach(element=>console.log(element))
-    // var row = table.insertRow();
-    // addCell(row, omg);
-    // addCell(row, account);
-  // });
+    var td = tr.insertCell();
+    td.textContent = text;
+    return td;
 }
+
+  var row = table.insertRow();
+  addCell(row, 'Candidates:');
+  addCell(row, "Total Votes:")
+  addCell(row, "District 0:")
+  addCell(row, "District 1:")
+  addCell(row, "District 2:")
+  addCell(row, "District 3:")
+  addCell(row, "District 4:")
+  addCell(row, "District 5:")
+  addCell(row, "District 6:")
+  addCell(row, "District 7:")
+  addCell(row, "District 8:")
+  addCell(row, "District 9:")
+
+  for (let i=0; i<5; i++){
+    let data2;
+    var row = table.insertRow();
+    await this.fetchResults(i).then(result=>{data2=result})
+
+    for (let j=0; j<12; j++){
+      addCell(row, data2[j]);
+    }
+  }
+}
+
 
 async function vote_one(address){
   let abi_

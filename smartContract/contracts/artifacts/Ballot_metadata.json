@@ -180,7 +180,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"3_Ballot.sol": "Ballot"
+			"smartContract/contracts/3_Ballot.sol": "Ballot"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -194,7 +194,7 @@
 		"remappings": []
 	},
 	"sources": {
-		"3_Ballot.sol": {
+		"smartContract/contracts/3_Ballot.sol": {
 			"keccak256": "0x39b04f558c4f5627b7c3472d0882e9a6b6822bdd91cbaa6ce11230c2f02978c7",
 			"license": "GPL-3.0",
 			"urls": [
