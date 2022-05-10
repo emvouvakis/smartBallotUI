@@ -2,7 +2,8 @@
 display: flex;
 justify-content: space-around;
 border-bottom-style: solid;
-flex-wrap: wrap
+flex-wrap: wrap;
+font-family: system-ui;
 }
 
 #body{
@@ -13,7 +14,7 @@ table{
     text-align: center;
 
     border: 1px solid;
-    overflow-y:auto;
+    /* overflow-y:auto; */
 }
 
 h1 {

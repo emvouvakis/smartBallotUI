@@ -1,4 +1,4 @@
-const contractAddress = "0x002Aaf0397e0ac8CB06D2Fc31fC3CC11305745AC";
+const contractAddress = "0x73696De4Bf38f515F9632aaf3B53A42439caf710";
 
 async function getABI() {
   let abi_;
@@ -95,7 +95,6 @@ async function showResults(){
   addCell(header, "District 9:")
 
   for (let i=0; i<5; i++){
-    let data2;
     var body= table.createTBody()
     var row = body.insertRow();
 
@@ -109,6 +108,8 @@ async function showResults(){
 
 
 async function start_voting(){
+  var Table = document.getElementById("accounts-table");
+  Table.innerHTML = "";
   
   await this.getProvider()
   await this.getABI().then((result) => {
@@ -123,11 +124,15 @@ async function start_voting(){
   });
 
 
-  for (let i=0; i<50; i++){
+  for (let i=0; i<=accounts.length; i++){
     // web3.eth.getBalance(accounts[0]).then(result => console.log(result));
     // web3.eth.getBlock("latest").gasLimit.then(result => console.log(result));
     // console.log(accounts[i])
     ballot.methods.vote().send({from: accounts[i],gas:'500000'})
   }
-  alert("Voting Competed!")
+  await ballot.methods.countV().call().then((result) => {
+    countV = result;
+    });
+
+  alert('Voting Competed! '+countV)
 }

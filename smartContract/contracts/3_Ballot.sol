@@ -33,10 +33,7 @@ contract Ballot {
 
     address private chairperson;
 
-    mapping(address => Voter) private voters;
-    // mapping(address => Proposal) public omg;
-    // mapping(uint => mapping(address => Proposal)) public xax;
-
+    mapping(address => Voter) public voters;
 
     Proposal[] private proposals;
 
@@ -54,8 +51,6 @@ contract Ballot {
         for (uint i = 0; i < proposalNames.length; i++) {
             proposals.push(Proposal({
                 name: proposalNames[i],
-                //voteCount: 0,
-                //district: 0,
                 Total_Votes: 0,
                 Votes_District0: 0,
                 Votes_District1: 0,
@@ -92,7 +87,6 @@ contract Ballot {
         require(!voters[msg.sender].voted,
             "The voter already voted.");
 
-        require(voters[msg.sender].weight == 0);
         voters[msg.sender].weight = 1;
         require(countV<=100,"Reached max voters.");
 
@@ -103,6 +97,7 @@ contract Ballot {
         //require(sender.weight != 0, "Has no right to vote");
         require(!sender.voted, "Already voted.");
         sender.voted = true;
+        // voters[msg.sender].voted = true;
 
         sender.vote = random_vote();
         countVoters();
@@ -118,8 +113,6 @@ contract Ballot {
         else if (sender.district==7){proposals[random_vote()].Votes_District7 += sender.weight;}
         else if (sender.district==8){proposals[random_vote()].Votes_District8 += sender.weight;}
         else {proposals[random_vote()].Votes_District9 += sender.weight;}
-        //proposals[proposal].voteCount += sender.weight;
-        //proposals[proposal].distr= sender.district;
     }
 
     function res(uint _id) public view returns(Proposal memory){
