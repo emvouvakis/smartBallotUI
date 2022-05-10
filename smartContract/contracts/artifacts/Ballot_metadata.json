@@ -11,6 +11,19 @@
 				"type": "constructor"
 			},
 			{
+				"inputs": [],
+				"name": "countV",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -163,11 +176,11 @@
 	},
 	"sources": {
 		"smartContract/contracts/3_Ballot.sol": {
-			"keccak256": "0x8429cccf9c42f8f01df98e4e52e578baa7e6632ac15b36a76c997a9ebe9d90f7",
+			"keccak256": "0xea35188badf319a1dbb77aaae43b7f925b961dbc5dc34e30f7e08334fb8e0bc2",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://5aee01c80e9b4297fa40455b45d25168d2d5b8ea04622e5bbe9110fbbd97b7dc",
-				"dweb:/ipfs/Qmem53BfqsBUGxJ7KaCZ1eh4x46PWZzqxDHi8hUmyALeGL"
+				"bzz-raw://6c8befaecc08ad806cbcdea128c175ba0a0e881a900c1970b32f0ab7eadc66d8",
+				"dweb:/ipfs/QmdooryeUEUTPpjhnBatruai1DuZzRSB1wpvSgWf5Eieoc"
 			]
 		}
 	},

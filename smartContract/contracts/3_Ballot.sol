@@ -67,7 +67,7 @@ contract Ballot {
     }
 
     //counting the number of voters
-    int private countV = 0;
+    int public countV = 0;
     function countVoters() private {
         countV += 1;
     }
