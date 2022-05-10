@@ -11,19 +11,6 @@
 				"type": "constructor"
 			},
 			{
-				"inputs": [],
-				"name": "random_vote",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -110,40 +97,6 @@
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "voters",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "weight",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "voted",
-						"type": "bool"
-					},
-					{
-						"internalType": "uint256",
-						"name": "district",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "vote",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -176,11 +129,11 @@
 	},
 	"sources": {
 		"smartContract/contracts/3_Ballot.sol": {
-			"keccak256": "0x53ebe16719ab04898e1e194aae08b43b7eb7b4105e08642aabc6d53beeb5030d",
+			"keccak256": "0x6c9be48c3bc37581e28486d5419541ef073d3aa80349ad1a34dc2972fa283f89",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://cf235f100d1d1d2b14a4c1b924eb66366a75fe8f0798e744eee1180dacf984fb",
-				"dweb:/ipfs/QmPUsJyMXEQ8ieKiap4wBfiHNNU29BvqPyhW76Hvihos5Q"
+				"bzz-raw://38fa2824eee8c64c98d0de8e88519019d49200c2127e92cfe7bd9065e86b5f27",
+				"dweb:/ipfs/QmP75qyMZF9HHtYEtshMyecyuFf668jePYAVJjVz228Zyn"
 			]
 		}
 	},

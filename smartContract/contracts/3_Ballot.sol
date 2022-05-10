@@ -18,8 +18,6 @@ contract Ballot {
 
     struct Proposal {
         string name;
-        //uint voteCount;
-        //uint district; // number of accumulated votes
         uint Total_Votes;
         uint Votes_District0;
         uint Votes_District1;
@@ -35,7 +33,7 @@ contract Ballot {
 
     address private chairperson;
 
-    mapping(address => Voter) public voters;
+    mapping(address => Voter) private voters;
     // mapping(address => Proposal) public omg;
     // mapping(uint => mapping(address => Proposal)) public xax;
 
@@ -73,78 +71,42 @@ contract Ballot {
         }
     }
 
-    // constructor(string[] memory proposalNames) {
-    //     require(proposalNames.length<=2,"xaxa");
-    //     chairperson = msg.sender;
-    //     voters[chairperson].weight = 1;
-
-    //     for (uint i = 0; i < proposalNames.length; i++) {
-    //         proposals.push(Proposal({
-    //             name: proposalNames[i],
-    //             voteCount: 0
-    //         }));
-    //     }
-    // }
-
     //counting the number of voters
-    int private count = 0;
-    function incrementCounter() private {
-        count += 1;
+    int private countV = 0;
+    function countVoters() private {
+        countV += 1;
     }
 
-
-    // function giveRightToVote(address voter) public {
-    //     require(
-    //         msg.sender == chairperson,
-    //         "Only chairperson can give right to vote."
-    //     );
-    //     require(
-    //         !voters[voter].voted,
-    //         "The voter already voted."
-    //     );
-    //     require(voters[voter].weight == 0);
-    //     voters[voter].weight = 1;
-    //     require(count<3,"Reached max voters.");
-    //     incrementCounter();
-    //     voters[voter].district=random_district();
+    // int private count2 = 0;
+    // function incrementCounter2() private {
+    //     count2 += 1;
     // }
 
-    int private count2 = 0;
-    function incrementCounter2() private {
-        count2 += 1;
-    }
-
-    function random_vote() public view returns(uint){
+    function random_vote() private view returns(uint){
             return uint(keccak256(abi.encodePacked(block.timestamp,block.difficulty,  
             msg.sender))) % 5;
         }
 
     function vote() public {
-        //new
-        require(
-            !voters[msg.sender].voted,
-            "The voter already voted."
-        );
+
+        require(!voters[msg.sender].voted,
+            "The voter already voted.");
+
         require(voters[msg.sender].weight == 0);
         voters[msg.sender].weight = 1;
-        //require(count<3,"Reached max voters.");
-        incrementCounter();
+        require(countV<=100,"Reached max voters.");
+
         voters[msg.sender].district=random_district();
-        //end new
+
         Voter storage sender = voters[msg.sender];
         //Proposal storage prop = omg[msg.sender];
         //require(sender.weight != 0, "Has no right to vote");
         require(!sender.voted, "Already voted.");
         sender.voted = true;
-        // proposal=random_vote();
-        sender.vote = random_vote();
-        // sender.district=random_district();
-        // xax[sender.district][msg.sender]= Proposal(name,voteCount);
 
-        // If 'proposal' is out of the range of the array,
-        // this will throw automatically and revert all
-        // changes.
-        //proposals[proposal].district=random_district();
+        sender.vote = random_vote();
+        countVoters();
+        
         proposals[random_vote()].Total_Votes += sender.weight;
         if (sender.district==0){proposals[random_vote()].Votes_District0 += sender.weight;}
         else if (sender.district==1){proposals[random_vote()].Votes_District1 += sender.weight;}
@@ -158,7 +120,6 @@ contract Ballot {
         else {proposals[random_vote()].Votes_District9 += sender.weight;}
         //proposals[proposal].voteCount += sender.weight;
         //proposals[proposal].distr= sender.district;
-        incrementCounter2();
     }
 
     function res(uint _id) public view returns(Proposal memory){
@@ -170,8 +131,8 @@ contract Ballot {
     //         returns (uint winningProposal_)
     // {
     //     uint winningVoteCount = 0;
-    //     //require(proposals.length==count);
-    //     //require(count2==count,"oloi");
+    //     //require(proposals.length==countV);
+    //     //require(count2==countV,"oloi");
     //     for (uint p = 0; p < proposals.length; p++) {
     //         if (proposals[p].voteCount > winningVoteCount) {
     //             winningVoteCount = proposals[p].voteCount;
@@ -183,7 +144,7 @@ contract Ballot {
 //     function winnerName() public view
 //             returns (string memory winnerName_)
 //     {
-//         require(count2==count+1,"Everyone that has the right must vote.");
+//         require(count2==countV+1,"Everyone that has the right must vote.");
 //         winnerName_ = proposals[winningProposal()].name;
 //     }
 // }
