@@ -1,4 +1,4 @@
-const contractAddress = "0xD590A904049Ebf83c77a445AF266bed500AfA194";
+const contractAddress = "0x338736c52B280F46917E07E2e8a34e1758EC70Cf";
 
 async function getABI() {
   let abi_;
@@ -119,5 +119,38 @@ async function showResults() {
     // addCell(row, account);
   // });
 }
+
+async function vote_one(address){
+  let abi_
+  
+  await this.getProvider()
+  await this.getABI().then((result) => {
+    abi = result;
+  });
+  let accounts;
+  await this.fetchAccounts().then((res) => {
+  accounts = res;
+  });
+  address=accounts[0]
+
+  let ballot = new web3.eth.Contract(abi, contractAddress)
+  ballot.methods.vote(address).call()
+}
+
+async function start_voting(){
+
+  let accounts;
+  await this.fetchAccounts().then((res) => {
+  accounts = res;
+  });
+
+  accounts.forEach(async function(address){
+    vote_one(address)
+  })
+  accounts.forEach(element=>console.log(element))
+
+  
+}
+
 
 

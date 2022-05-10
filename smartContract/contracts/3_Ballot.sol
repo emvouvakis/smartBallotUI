@@ -122,24 +122,31 @@ contract Ballot {
     function incrementCounter2() private {
         count2 += 1;
     }
-    function vote(uint proposal) public {
+
+    function random_vote() private view returns(uint){
+            return uint(keccak256(abi.encodePacked(block.timestamp,block.difficulty,  
+            msg.sender))) % 5;
+        }
+
+    function vote(address _address) public {
         //new
         require(
-            !voters[msg.sender].voted,
+            !voters[_address].voted,
             "The voter already voted."
         );
-        require(voters[msg.sender].weight == 0);
-        voters[msg.sender].weight = 1;
+        require(voters[_address].weight == 0);
+        voters[_address].weight = 1;
         //require(count<3,"Reached max voters.");
         incrementCounter();
-        voters[msg.sender].district=random_district();
+        voters[_address].district=random_district();
         //end new
-        Voter storage sender = voters[msg.sender];
-        //Proposal storage prop = omg[msg.sender];
+        Voter storage sender = voters[_address];
+        //Proposal storage prop = omg[_address];
         require(sender.weight != 0, "Has no right to vote");
         require(!sender.voted, "Already voted.");
         sender.voted = true;
-        sender.vote = proposal;
+        // proposal=random_vote();
+        sender.vote = random_vote();
         // sender.district=random_district();
         // xax[sender.district][msg.sender]= Proposal(name,voteCount);
 
@@ -147,17 +154,17 @@ contract Ballot {
         // this will throw automatically and revert all
         // changes.
         //proposals[proposal].district=random_district();
-        proposals[proposal].Total_Votes += sender.weight;
-        if (sender.district==0){proposals[proposal].Votes_District0 += sender.weight;}
-        else if (sender.district==1){proposals[proposal].Votes_District1 += sender.weight;}
-        else if (sender.district==2){proposals[proposal].Votes_District2 += sender.weight;}
-        else if (sender.district==3){proposals[proposal].Votes_District3 += sender.weight;}
-        else if (sender.district==4){proposals[proposal].Votes_District4 += sender.weight;}
-        else if (sender.district==5){proposals[proposal].Votes_District5 += sender.weight;}
-        else if (sender.district==6){proposals[proposal].Votes_District6 += sender.weight;}
-        else if (sender.district==7){proposals[proposal].Votes_District7 += sender.weight;}
-        else if (sender.district==8){proposals[proposal].Votes_District8 += sender.weight;}
-        else {proposals[proposal].Votes_District9 += sender.weight;}
+        proposals[random_vote()].Total_Votes += sender.weight;
+        if (sender.district==0){proposals[random_vote()].Votes_District0 += sender.weight;}
+        else if (sender.district==1){proposals[random_vote()].Votes_District1 += sender.weight;}
+        else if (sender.district==2){proposals[random_vote()].Votes_District2 += sender.weight;}
+        else if (sender.district==3){proposals[random_vote()].Votes_District3 += sender.weight;}
+        else if (sender.district==4){proposals[random_vote()].Votes_District4 += sender.weight;}
+        else if (sender.district==5){proposals[random_vote()].Votes_District5 += sender.weight;}
+        else if (sender.district==6){proposals[random_vote()].Votes_District6 += sender.weight;}
+        else if (sender.district==7){proposals[random_vote()].Votes_District7 += sender.weight;}
+        else if (sender.district==8){proposals[random_vote()].Votes_District8 += sender.weight;}
+        else {proposals[random_vote()].Votes_District9 += sender.weight;}
         //proposals[proposal].voteCount += sender.weight;
         //proposals[proposal].distr= sender.district;
         incrementCounter2();

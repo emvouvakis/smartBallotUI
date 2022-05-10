@@ -120,9 +120,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "proposal",
-						"type": "uint256"
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
 					}
 				],
 				"name": "vote",
@@ -195,11 +195,11 @@
 	},
 	"sources": {
 		"3_Ballot.sol": {
-			"keccak256": "0x3ebeb4ecd5ee26775cc4877b8eae37e93d7c0f598e7b8da855ca3548acf46644",
+			"keccak256": "0x39b04f558c4f5627b7c3472d0882e9a6b6822bdd91cbaa6ce11230c2f02978c7",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://3109474f1bd5f4015bad468cdbffb93f94a919e5d963e531816299fe70976502",
-				"dweb:/ipfs/QmbjSWBRXmEVBjC6EQaqzS5GPFQcJXBa6t82vGJ655HyUS"
+				"bzz-raw://2c23814002995ee72fdd5bbc84f5a65f656f3e1d119667074390a0b115d4e4af",
+				"dweb:/ipfs/QmSU3MgMTYXVGftQLLyxPBekEVLYwpZyFtLK2cRV7gCmdQ"
 			]
 		}
 	},
