@@ -1,4 +1,4 @@
-const contractAddress = "0xA2442A5400372DB262647FDEF2366928a9Bc7325";
+const contractAddress = "0x002Aaf0397e0ac8CB06D2Fc31fC3CC11305745AC";
 
 async function getABI() {
   let abi_;
@@ -19,14 +19,8 @@ async function getProvider() {
   window.web3 = web3;
 }
 
-const $ = (sel) => {
-  return document.querySelector(sel)
-}
-
 async function fetchAccounts() {
-  // var provider = "http://127.0.0.1:7545";
-  // var web3Provider = new Web3.providers.HttpProvider(provider);
-  // var web3 = new Web3(web3Provider);
+
   await this.getProvider()
   let accounts;
   await web3.eth.getAccounts().then((result) => {
@@ -39,25 +33,24 @@ async function fetchAccounts() {
 async function showAccounts() {
   var Table = document.getElementById("accounts-table");
   Table.innerHTML = "";
+
   let accounts;
   await this.fetchAccounts().then((res) => {
     accounts = res;
   });
 
-  // make table visible
   var tableContainer = document.getElementById("table-container"); 
   tableContainer.style.visibility = "visible"; 
 
   var table = document.getElementById("accounts-table"); //
 
-  // helper function        
+ 
   function addCell(tr, text) {
       var td = tr.insertCell();
       td.textContent = text;
       return td;
   }
 
-  // insert data
   accounts.forEach(function (account, index) {
     var row = table.insertRow();
     addCell(row, index);
@@ -130,12 +123,10 @@ async function start_voting(){
 
 
   for (let i=0; i<50; i++){
-
-    console.log(accounts[i])
-    ballot.methods.vote(accounts[i]).send({from:accounts[i]})
-
+    // web3.eth.getBalance(accounts[0]).then(result => console.log(result));
+    // web3.eth.getBlock("latest").gasLimit.then(result => console.log(result));
+    // console.log(accounts[i])
+    ballot.methods.vote().send({from: accounts[i],gas:'500000'})
   }
+  alert("Voting Competed!")
 }
-
-
-

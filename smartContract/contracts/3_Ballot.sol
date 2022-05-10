@@ -47,15 +47,6 @@ contract Ballot {
         return uint(keccak256(abi.encodePacked(block.timestamp,block.difficulty,  
         msg.sender))) % 10;
     }
-
-    string private info;
-    function setInfo(string memory _info) public {
-        info = _info;
-    }
-
-    function getInfo() public view returns (string memory) {
-        return info;
-    }
     
     constructor() {
         chairperson = msg.sender;
@@ -123,26 +114,26 @@ contract Ballot {
         count2 += 1;
     }
 
-    function random_vote() private view returns(uint){
+    function random_vote() public view returns(uint){
             return uint(keccak256(abi.encodePacked(block.timestamp,block.difficulty,  
             msg.sender))) % 5;
         }
 
-    function vote(address _address) public {
+    function vote() public {
         //new
         require(
-            !voters[_address].voted,
+            !voters[msg.sender].voted,
             "The voter already voted."
         );
-        require(voters[_address].weight == 0);
-        voters[_address].weight = 1;
+        require(voters[msg.sender].weight == 0);
+        voters[msg.sender].weight = 1;
         //require(count<3,"Reached max voters.");
         incrementCounter();
-        voters[_address].district=random_district();
+        voters[msg.sender].district=random_district();
         //end new
-        Voter storage sender = voters[_address];
-        //Proposal storage prop = omg[_address];
-        require(sender.weight != 0, "Has no right to vote");
+        Voter storage sender = voters[msg.sender];
+        //Proposal storage prop = omg[msg.sender];
+        //require(sender.weight != 0, "Has no right to vote");
         require(!sender.voted, "Already voted.");
         sender.voted = true;
         // proposal=random_vote();

@@ -12,12 +12,12 @@
 			},
 			{
 				"inputs": [],
-				"name": "getInfo",
+				"name": "random_vote",
 				"outputs": [
 					{
-						"internalType": "string",
+						"internalType": "uint256",
 						"name": "",
-						"type": "string"
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -105,26 +105,7 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "_info",
-						"type": "string"
-					}
-				],
-				"name": "setInfo",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_address",
-						"type": "address"
-					}
-				],
+				"inputs": [],
 				"name": "vote",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -195,11 +176,11 @@
 	},
 	"sources": {
 		"smartContract/contracts/3_Ballot.sol": {
-			"keccak256": "0x39b04f558c4f5627b7c3472d0882e9a6b6822bdd91cbaa6ce11230c2f02978c7",
+			"keccak256": "0x53ebe16719ab04898e1e194aae08b43b7eb7b4105e08642aabc6d53beeb5030d",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://2c23814002995ee72fdd5bbc84f5a65f656f3e1d119667074390a0b115d4e4af",
-				"dweb:/ipfs/QmSU3MgMTYXVGftQLLyxPBekEVLYwpZyFtLK2cRV7gCmdQ"
+				"bzz-raw://cf235f100d1d1d2b14a4c1b924eb66366a75fe8f0798e744eee1180dacf984fb",
+				"dweb:/ipfs/QmPUsJyMXEQ8ieKiap4wBfiHNNU29BvqPyhW76Hvihos5Q"
 			]
 		}
 	},
