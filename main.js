@@ -19,6 +19,10 @@ async function getProvider() {
   window.web3 = web3;
 }
 
+const $ = (sel) => {
+  return document.querySelector(sel)
+}
+
 async function fetchAccounts() {
   // var provider = "http://127.0.0.1:7545";
   // var web3Provider = new Web3.providers.HttpProvider(provider);
@@ -33,20 +37,18 @@ async function fetchAccounts() {
 }
 
 async function showAccounts() {
+  var Table = document.getElementById("accounts-table");
+  Table.innerHTML = "";
   let accounts;
   await this.fetchAccounts().then((res) => {
     accounts = res;
   });
 
-  // make button hidden
-  var btn = document.getElementById("btn-accounts"); // pernas to id toy table
-  // btn.style.visibility = "hidden"; // kanis ton pinaka orato
-
   // make table visible
-  var tableContainer = document.getElementById("table-container"); // pernas to id toy table
-  tableContainer.style.visibility = "visible"; // kanis ton pinaka orato
+  var tableContainer = document.getElementById("table-container"); 
+  tableContainer.style.visibility = "visible"; 
 
-  var table = document.getElementById("accounts-table"); // perneis ton pinaka
+  var table = document.getElementById("accounts-table"); //
 
   // helper function        
   function addCell(tr, text) {
@@ -63,22 +65,20 @@ async function showAccounts() {
   });
 }
 
-async function fetchResults(candidate){
-  let ballot = new web3.eth.Contract(abi, contractAddress)
-  await ballot.methods.res(candidate).call().then(data=>data1=data)
 
-  return data1
-}
+async function showResults(){
+  //Clear Table First
+  var Table = document.getElementById("accounts-table");
+  Table.innerHTML = "";
 
-async function fetchAllResults2(){
-  let abi_
   await this.getProvider()
   await this.getABI().then((result) => {
     abi = result;
   });
+  let ballot = new web3.eth.Contract(abi, contractAddress)
 
-  var tableContainer = document.getElementById("table-container"); // pernas to id toy table
-  tableContainer.style.visibility = "visible"; // kanis ton pinaka orato
+  var tableContainer = document.getElementById("table-container"); 
+  tableContainer.style.visibility = "visible";
 
   var table = document.getElementById("accounts-table");
   function addCell(tr, text) {
@@ -104,45 +104,37 @@ async function fetchAllResults2(){
   for (let i=0; i<5; i++){
     let data2;
     var row = table.insertRow();
-    await this.fetchResults(i).then(result=>{data2=result})
+
+    await ballot.methods.res(i).call().then(result=>data=result)
 
     for (let j=0; j<12; j++){
-      addCell(row, data2[j]);
+      addCell(row, data[j]);
     }
   }
 }
 
 
-async function vote_one(address){
-  let abi_
+async function start_voting(){
   
   await this.getProvider()
   await this.getABI().then((result) => {
     abi = result;
   });
-  let accounts;
-  await this.fetchAccounts().then((res) => {
-  accounts = res;
-  });
-  address=accounts[0]
 
   let ballot = new web3.eth.Contract(abi, contractAddress)
-  ballot.methods.vote(address).call()
-}
-
-async function start_voting(){
 
   let accounts;
   await this.fetchAccounts().then((res) => {
   accounts = res;
   });
 
-  accounts.forEach(async function(address){
-    vote_one(address)
-  })
-  accounts.forEach(element=>console.log(element))
 
-  
+  for (let i=0; i<50; i++){
+
+    console.log(accounts[i])
+    ballot.methods.vote(accounts[i]).send({from:accounts[i]})
+
+  }
 }
 
 
