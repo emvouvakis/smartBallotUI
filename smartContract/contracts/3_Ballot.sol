@@ -118,26 +118,34 @@ contract Ballot {
     function res(uint _id) public view returns(Proposal memory){
         return proposals[_id];
     }
-}
 
-    // function winningProposal() public view
-    //         returns (uint winningProposal_)
-    // {
-    //     uint winningVoteCount = 0;
-    //     //require(proposals.length==countV);
-    //     //require(count2==countV,"oloi");
-    //     for (uint p = 0; p < proposals.length; p++) {
-    //         if (proposals[p].voteCount > winningVoteCount) {
-    //             winningVoteCount = proposals[p].voteCount;
-    //             winningProposal_ = p;
-    //         }
-    //     }
-    // }
+}
+//     function winningProposal() public view
+//             returns (uint winningProposal_, uint[] memory winners)
+//     {
+//         //uint[] winners;
+//         uint winningVoteCount = 0;
+//         //require(proposals.length==countV);
+//         //require(count2==countV,"oloi");
+//         for (uint p = 0; p < proposals.length; p++) {
+//             if (proposals[p].Total_Votes > winningVoteCount) {
+//                 winningVoteCount = proposals[p].Total_Votes;
+//                 winningProposal_ = p;
+                
+//             }
+//         }
+//         for (uint p = 0; p < proposals.length; p++) {
+//             if (proposals[p].Total_Votes == winningVoteCount) {
+//                 winners.push(proposals[p]);
+//             }
+//         }
+
+//     }
 
 //     function winnerName() public view
 //             returns (string memory winnerName_)
 //     {
-//         require(count2==countV+1,"Everyone that has the right must vote.");
+//         // require(count2==countV+1,"Everyone that has the right must vote.");
 //         winnerName_ = proposals[winningProposal()].name;
 //     }
 // }
