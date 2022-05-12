@@ -1,5 +1,5 @@
 //Necessary components to make connection to the contract
-const contractAddress = "0x52e206d7913eAf7038EdCcD2Fd1B8B7872DE9cCa"; //Needs to be changed ! !
+const contractAddress = "0x9ec72f00A3EE7d86eAb657A93db5529641ABE773"; //Needs to be changed ! !
 
 async function getABI() {
   let abi_;
