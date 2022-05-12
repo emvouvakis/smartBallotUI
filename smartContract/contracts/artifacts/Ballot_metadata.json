@@ -24,6 +24,136 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "d0",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "d1",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "d2",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "d3",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "d4",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "d5",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "d6",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "d7",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "d8",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "d9",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -169,11 +299,11 @@
 	},
 	"sources": {
 		"smartContract/contracts/3_Ballot.sol": {
-			"keccak256": "0x77d693b16dfe97592f0b4c2ca578046b33e2f264588974ad54db8894bf6f8414",
+			"keccak256": "0x070adc6779802ede6f9a65dd64417b29f078902628af5d84cd44492b0edb9c6d",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://8f75d08ca72fa2294213ba3b7b6d195a92c5619260542e17bd491c4c49343f7e",
-				"dweb:/ipfs/QmcKSQSVogVLc2NHJW3P3G8ap6zP7bDer2uCBKSNCndu8M"
+				"bzz-raw://ff65f0bb359a3d58294316beb578f353b15dde4c814de36c0ec1ee22597bb2da",
+				"dweb:/ipfs/QmZR8PsNGFf5mhacUcVzmgSbTZvDrT665cFAb6JLcYek7V"
 			]
 		}
 	},

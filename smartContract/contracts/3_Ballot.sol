@@ -59,9 +59,42 @@ contract Ballot {
 
     //counting the number of voters
     int public countV = 0;
-    function countVoters() private {
-        countV += 1;
-    }
+    // function countVoters() private {
+    //     countV += 1;
+    // }
+
+    //counting the number of voters for each district
+    int public d0 = 0;
+    int public d1 = 0;
+    int public d2 = 0;
+    int public d3 = 0;
+    int public d4 = 0;
+    int public d5 = 0;
+    int public d6 = 0;
+    int public d7 = 0;
+    int public d8 = 0;
+    int public d9 = 0;
+
+    // function district0() private {
+    //     d0 += 1;}
+    // function district1() private {
+    //     d1 += 1;}
+    // function district2() private {
+    //     d2 += 1;}
+    // function district3() private {
+    //     d3 += 1;}
+    // function district4() private {
+    //     d4 += 1;}
+    // function district5() private {
+    //     d5 += 1;}
+    // function district6() private {
+    //     d6 += 1;}
+    // function district7() private {
+    //     d7 += 1;}
+    // function district8() private {
+    //     d8 += 1;}
+    // function district9() private {
+    //     d9 += 1;}
 
     function random_vote() private view returns(uint){
             return uint(keccak256(abi.encodePacked(block.timestamp,block.difficulty,  
@@ -81,19 +114,20 @@ contract Ballot {
         sender.voted = true;
 
         sender.vote = random_vote();
-        countVoters();
+        // countVoters();
+        countV += 1;
         
         proposals[random_vote()].Total_Votes += 1;
-        if (sender.district==0){proposals[random_vote()].Votes_District0 += 1;}
-        else if (sender.district==1){proposals[random_vote()].Votes_District1 += 1;}
-        else if (sender.district==2){proposals[random_vote()].Votes_District2 += 1;}
-        else if (sender.district==3){proposals[random_vote()].Votes_District3 += 1;}
-        else if (sender.district==4){proposals[random_vote()].Votes_District4 += 1;}
-        else if (sender.district==5){proposals[random_vote()].Votes_District5 += 1;}
-        else if (sender.district==6){proposals[random_vote()].Votes_District6 += 1;}
-        else if (sender.district==7){proposals[random_vote()].Votes_District7 += 1;}
-        else if (sender.district==8){proposals[random_vote()].Votes_District8 += 1;}
-        else {proposals[random_vote()].Votes_District9 += 1;}
+        if (sender.district==0){proposals[random_vote()].Votes_District0 += 1;d0+=1;}
+        else if (sender.district==1){proposals[random_vote()].Votes_District1 += 1;d1+=1;}
+        else if (sender.district==2){proposals[random_vote()].Votes_District2 += 1;d2+=1;}
+        else if (sender.district==3){proposals[random_vote()].Votes_District3 += 1;d3+=1;}
+        else if (sender.district==4){proposals[random_vote()].Votes_District4 += 1;d4+=1;}
+        else if (sender.district==5){proposals[random_vote()].Votes_District5 += 1;d5+=1;}
+        else if (sender.district==6){proposals[random_vote()].Votes_District6 += 1;d6+=1;}
+        else if (sender.district==7){proposals[random_vote()].Votes_District7 += 1;d7+=1;}
+        else if (sender.district==8){proposals[random_vote()].Votes_District8 += 1;d8+=1;}
+        else {proposals[random_vote()].Votes_District9 += 1;d9+=1;}
     }
 
     function res(uint _id) public view returns(Proposal memory){

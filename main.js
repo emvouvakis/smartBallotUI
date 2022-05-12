@@ -1,4 +1,5 @@
-const contractAddress = "0xfC89091d74636EF863287c844093820578378c06";
+//Necessary components to make connection to the contract
+const contractAddress = "0x52e206d7913eAf7038EdCcD2Fd1B8B7872DE9cCa"; //Needs to be changed ! !
 
 async function getABI() {
   let abi_;
@@ -12,60 +13,59 @@ async function getABI() {
 
 async function getProvider() {
 
-  var provider = "http://127.0.0.1:7545";
+  var provider = "http://127.0.0.1:8545";
   var web3Provider = new Web3.providers.HttpProvider(provider);
   var web3 = new Web3(web3Provider);
   window.web3 = web3;
 }
 
+//Get all accounts from ganache-cli
 async function fetchAccounts() {
 
-  await this.getProvider()
+  await this.getProvider();
   let accounts;
-  await web3.eth.getAccounts().then((result) => {
-    accounts = result;
-  });
+  await web3.eth.getAccounts().then((result) => {accounts = result});
 
   return accounts;
 }
 
+//Get status of voting for each address (true-false) and their district
 async function voteStatus(address){
-  await this.getProvider()
-  await this.getABI().then((result) => {
-    abi = result;
-  });
 
+  //Make connection to the contract
+  await this.getProvider()
+  await this.getABI().then((result) => {abi = result});
   let ballot = new web3.eth.Contract(abi, contractAddress)
 
   let voteStatus_;
-  await ballot.methods.voters(address).call().then((result) => {
-      voteStatus_ = result;
-    })
+  await ballot.methods.voters(address).call().then((result) => {voteStatus_ = result})
 
   return voteStatus_
 }
 
+//Function to fill the tables with data
+function addCell(tr, text) {
+  var td = tr.insertCell();
+  td.textContent = text;
+  return td;
+}
+
+
+//Using all the above, makes a table with adddress, vote status and district 
 async function showAccounts() {
+
+  //Clear table
   var Table = document.getElementById("accounts-table");
   Table.innerHTML = "";
 
   let accounts;
-  await this.fetchAccounts().then((res) => {
-    accounts = res;
-  });
+  await this.fetchAccounts().then((res) => {accounts = res});
 
   var tableContainer = document.getElementById("table-container"); 
   tableContainer.style.visibility = "visible"; 
+  var table = document.getElementById("accounts-table"); 
 
-  var table = document.getElementById("accounts-table"); //
-
- 
-  function addCell(tr, text) {
-      var td = tr.insertCell();
-      td.textContent = text;
-      return td;
-  }
-
+  //Create head of the table
   var head = table.createTHead();
   var header = head.insertRow(0);
   addCell(header, '#');
@@ -73,11 +73,12 @@ async function showAccounts() {
   addCell(header, "Vote Status");
   addCell(header, "District");
 
+  //Fill rest of the table
   for (let i=0; i<accounts.length; i++){
     let voteStatus_;
-    await this.voteStatus(accounts[i]).then(result=>voteStatus_=result[0]);
+    await this.voteStatus(accounts[i]).then(result=>voteStatus_=result[0]); //Vote status
     let district;
-    await this.voteStatus(accounts[i]).then(result=>district=result[1]);
+    await this.voteStatus(accounts[i]).then(result=>district=result[1]); //District
     
     var body= table.createTBody();
     var row = body.insertRow();
@@ -92,26 +93,21 @@ async function showAccounts() {
 
 
 async function showResults(){
+
   //Clear Table First
   var Table = document.getElementById("accounts-table");
   Table.innerHTML = "";
 
+  //Make connection to the contract
   await this.getProvider();
-  await this.getABI().then((result) => {
-    abi = result;
-  });
+  await this.getABI().then((result) => {abi = result});
   let ballot = new web3.eth.Contract(abi, contractAddress);
 
   var tableContainer = document.getElementById("table-container"); 
   tableContainer.style.visibility = "visible";
-
   var table = document.getElementById("accounts-table");
-  function addCell(tr, text) {
-    var td = tr.insertCell();
-    td.textContent = text;
-    return td;
-  }
 
+  //Create head of the table
   var head = table.createTHead();
   var header = head.insertRow(0);
   addCell(header, 'Candidates:');
@@ -127,6 +123,7 @@ async function showResults(){
   addCell(header, "District 8:");
   addCell(header, "District 9:");
 
+  //Fill rest of the table
   for (let i=0; i<5; i++){
     var body= table.createTBody();
     var row = body.insertRow();
@@ -138,32 +135,62 @@ async function showResults(){
     }
   }
 
+  //Call counters 
   await ballot.methods.countV().call().then((result) => countV_= result)
+  await ballot.methods.d0().call().then((result) => d0_= result)
+  await ballot.methods.d1().call().then((result) => d1_= result)
+  await ballot.methods.d2().call().then((result) => d2_= result)
+  await ballot.methods.d3().call().then((result) => d3_= result)
+  await ballot.methods.d4().call().then((result) => d4_= result)
+  await ballot.methods.d5().call().then((result) => d5_= result)
+  await ballot.methods.d6().call().then((result) => d6_= result)
+  await ballot.methods.d7().call().then((result) => d7_= result)
+  await ballot.methods.d8().call().then((result) => d8_= result)
+  await ballot.methods.d9().call().then((result) => d9_= result)
+ 
+
+  //Show counters in the last row
   var row = body.insertRow();
   addCell(row, 'Total');
   addCell(row, countV_);
+  addCell(row, d0_);
+  addCell(row, d1_);
+  addCell(row, d2_);
+  addCell(row, d3_);
+  addCell(row, d4_);
+  addCell(row, d5_);
+  addCell(row, d6_);
+  addCell(row, d7_);
+  addCell(row, d8_);
+  addCell(row, d9_);
 }
 
-
+//Automate voting process for all accounts
 async function start_voting(){
+  //Clear table First
   var Table = document.getElementById("accounts-table");
   Table.innerHTML = "";
 
+  //Make connection to the contract
   await this.getProvider();
   await this.getABI().then((result) => {abi = result});
-
   let ballot = new web3.eth.Contract(abi, contractAddress);
 
-  await ballot.methods.countV().call().then((result) => countV_= result)
   let accounts;
   await this.fetchAccounts().then((res) => {accounts = res});
+  await ballot.methods.countV().call().then((result) => countV_= result);
+
+  //Checking if addresses have voted
   if (countV_<accounts.length){
 
+    //Voting
     for (let i=0; i<=accounts.length; i++){
       ballot.methods.vote().send({from: accounts[i],gas:'500000'});
     }
 
     alert('Addresses votes successfully !');
+
+    //Alert for max 100 voters
     if (accounts.length>100){ alert('Reached max voters')};
   } else {
     alert('Addresses have already voted !');
