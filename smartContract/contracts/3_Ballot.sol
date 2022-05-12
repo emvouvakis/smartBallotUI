@@ -2,18 +2,13 @@
 
 pragma solidity >=0.7.0 <0.9.0;
 
-/** 
- * @title Ballot
- * @dev Implements voting process along with vote delegation
- */
+
 contract Ballot {
    
     struct Voter {
-        // uint weight; // weight is accumulated by delegation
         bool voted;  // if true, that person already voted
-        uint district;
-        uint vote;   // index of the voted proposal
-
+        uint district; // randomly chosen number between 0 and 9
+        uint vote;   // randomly chosen number between 0 and 4
     }
 
     struct Proposal {
@@ -31,8 +26,6 @@ contract Ballot {
         uint Votes_District9;
     }
 
-    address private chairperson;
-
     mapping(address => Voter) public voters;
 
     Proposal[] private proposals;
@@ -44,8 +37,6 @@ contract Ballot {
     }
     
     constructor() {
-        chairperson = msg.sender;
-        // voters[chairperson].weight = 1;
         string[5] memory proposalNames = ["a","b","c","d","e"];
         require(proposalNames.length==5,"Candidates must be 5.");
         for (uint i = 0; i < proposalNames.length; i++) {
@@ -72,32 +63,22 @@ contract Ballot {
         countV += 1;
     }
 
-    // int private count2 = 0;
-    // function incrementCounter2() private {
-    //     count2 += 1;
-    // }
-
     function random_vote() private view returns(uint){
             return uint(keccak256(abi.encodePacked(block.timestamp,block.difficulty,  
             msg.sender))) % 5;
-        }
+    }
 
     function vote() public {
 
-        require(!voters[msg.sender].voted,
-            "The voter already voted.");
+        require(!voters[msg.sender].voted, "The voter already voted.");
 
-        // voters[msg.sender].weight = 1;
-        require(countV<=20,"Reached max voters.");
+        require(countV<100,"Reached max voters.");
 
         voters[msg.sender].district=random_district();
 
         Voter storage sender = voters[msg.sender];
-        //Proposal storage prop = omg[msg.sender];
-        //require(sender.weight != 0, "Has no right to vote");
         require(!sender.voted, "Already voted.");
         sender.voted = true;
-        // voters[msg.sender].voted = true;
 
         sender.vote = random_vote();
         countVoters();

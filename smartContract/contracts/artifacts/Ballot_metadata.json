@@ -142,10 +142,8 @@
 			}
 		],
 		"devdoc": {
-			"details": "Implements voting process along with vote delegation",
 			"kind": "dev",
 			"methods": {},
-			"title": "Ballot",
 			"version": 1
 		},
 		"userdoc": {
@@ -171,11 +169,11 @@
 	},
 	"sources": {
 		"smartContract/contracts/3_Ballot.sol": {
-			"keccak256": "0x395f69669704d47aed3cfdf845020f6887af58e5e6221a1400f0d76b4651aaba",
+			"keccak256": "0x77d693b16dfe97592f0b4c2ca578046b33e2f264588974ad54db8894bf6f8414",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://ac12d8f9cd20d0219f00c243d662220959eb6440e327529de18393673fc78c74",
-				"dweb:/ipfs/QmYVN1T9VkwDxQxeygrn62haFtDEk8h5j7NFdUtjQxzPw3"
+				"bzz-raw://8f75d08ca72fa2294213ba3b7b6d195a92c5619260542e17bd491c4c49343f7e",
+				"dweb:/ipfs/QmcKSQSVogVLc2NHJW3P3G8ap6zP7bDer2uCBKSNCndu8M"
 			]
 		}
 	},

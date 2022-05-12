@@ -1,4 +1,4 @@
-const contractAddress = "0x9BE4dd8255AF2FF6ca2d62258285996fe00F47D5";
+const contractAddress = "0xfC89091d74636EF863287c844093820578378c06";
 
 async function getABI() {
   let abi_;
@@ -9,7 +9,6 @@ async function getABI() {
 
   return abi_;
 }
-
 
 async function getProvider() {
 
@@ -159,20 +158,13 @@ async function start_voting(){
   let accounts;
   await this.fetchAccounts().then((res) => {accounts = res});
   if (countV_<accounts.length){
-    
-    // let accounts;
-    // await this.fetchAccounts().then((res) => {accounts = res});
-
 
     for (let i=0; i<=accounts.length; i++){
       ballot.methods.vote().send({from: accounts[i],gas:'500000'});
     }
 
-
-    // await ballot.methods.countV().call().then((result) => {countV_ = result})
-    // setTimeout( async function() { alert(countV_ + 'Addresses votes successfully!'); }, 10);
-    alert('Addresses votes successfully!');
-    if (accounts.length>20){ alert('Reached max voters')};
+    alert('Addresses votes successfully !');
+    if (accounts.length>100){ alert('Reached max voters')};
   } else {
     alert('Addresses have already voted !');
   }
