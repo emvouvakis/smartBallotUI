@@ -1,4 +1,4 @@
-const contractAddress = "0x77C4aFbF141F4cDDA0B23a0E7C8CAdBd8C419C56";
+const contractAddress = "0x0e4a596159ed94EC75c3359632eDD93C88e7a456";
 
 async function getABI() {
   let abi_;
@@ -76,9 +76,9 @@ async function showAccounts() {
 
   for (let i=0; i<accounts.length; i++){
     let voteStatus_;
-    await this.voteStatus(accounts[i]).then(result=>voteStatus_=result[1]);
+    await this.voteStatus(accounts[i]).then(result=>voteStatus_=result[0]);
     let district;
-    await this.voteStatus(accounts[i]).then(result=>district=result[2]);
+    await this.voteStatus(accounts[i]).then(result=>district=result[1]);
     
     var body= table.createTBody();
     var row = body.insertRow();
@@ -144,24 +144,29 @@ async function showResults(){
 async function start_voting(){
   var Table = document.getElementById("accounts-table");
   Table.innerHTML = "";
-  
+
   await this.getProvider();
   await this.getABI().then((result) => {abi = result});
 
   let ballot = new web3.eth.Contract(abi, contractAddress);
 
+  await ballot.methods.countV().call().then((result) => countV_= result)
   let accounts;
   await this.fetchAccounts().then((res) => {accounts = res});
+  if (countV_<accounts.length){
+    
+    // let accounts;
+    // await this.fetchAccounts().then((res) => {accounts = res});
 
 
-  for (let i=0; i<=accounts.length; i++){
-    // web3.eth.getBalance(accounts[0]).then(result => console.log(result));
-    // web3.eth.getBlock("latest").gasLimit.then(result => console.log(result));
-    // console.log(accounts[i])
-    ballot.methods.vote().send({from: accounts[i],gas:'500000'});
+    for (let i=0; i<=accounts.length; i++){
+      ballot.methods.vote().send({from: accounts[i],gas:'500000'});
+    }
+
+    // await ballot.methods.countV().call().then((result) => {countV_ = result})
+    setTimeout( async function() { alert(countV_ + 'Addresses votes successfully!'); }, 10);
+    // alert(countV_ + 'Addresses votes successfully!');
+  } else {
+    alert('Addresses have already voted !');
   }
-
-  await ballot.methods.countV().call().then((result) => {countV_ = result})
-
-  alert('Voting Competed! Voted: '+countV_+' Addresses');
 }

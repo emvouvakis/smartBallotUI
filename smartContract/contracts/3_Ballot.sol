@@ -9,7 +9,7 @@ pragma solidity >=0.7.0 <0.9.0;
 contract Ballot {
    
     struct Voter {
-        uint weight; // weight is accumulated by delegation
+        // uint weight; // weight is accumulated by delegation
         bool voted;  // if true, that person already voted
         uint district;
         uint vote;   // index of the voted proposal
@@ -45,7 +45,7 @@ contract Ballot {
     
     constructor() {
         chairperson = msg.sender;
-        voters[chairperson].weight = 1;
+        // voters[chairperson].weight = 1;
         string[5] memory proposalNames = ["a","b","c","d","e"];
         require(proposalNames.length==5,"Candidates must be 5.");
         for (uint i = 0; i < proposalNames.length; i++) {
@@ -87,7 +87,7 @@ contract Ballot {
         require(!voters[msg.sender].voted,
             "The voter already voted.");
 
-        voters[msg.sender].weight = 1;
+        // voters[msg.sender].weight = 1;
         require(countV<=100,"Reached max voters.");
 
         voters[msg.sender].district=random_district();
@@ -102,17 +102,17 @@ contract Ballot {
         sender.vote = random_vote();
         countVoters();
         
-        proposals[random_vote()].Total_Votes += sender.weight;
-        if (sender.district==0){proposals[random_vote()].Votes_District0 += sender.weight;}
-        else if (sender.district==1){proposals[random_vote()].Votes_District1 += sender.weight;}
-        else if (sender.district==2){proposals[random_vote()].Votes_District2 += sender.weight;}
-        else if (sender.district==3){proposals[random_vote()].Votes_District3 += sender.weight;}
-        else if (sender.district==4){proposals[random_vote()].Votes_District4 += sender.weight;}
-        else if (sender.district==5){proposals[random_vote()].Votes_District5 += sender.weight;}
-        else if (sender.district==6){proposals[random_vote()].Votes_District6 += sender.weight;}
-        else if (sender.district==7){proposals[random_vote()].Votes_District7 += sender.weight;}
-        else if (sender.district==8){proposals[random_vote()].Votes_District8 += sender.weight;}
-        else {proposals[random_vote()].Votes_District9 += sender.weight;}
+        proposals[random_vote()].Total_Votes += 1;
+        if (sender.district==0){proposals[random_vote()].Votes_District0 += 1;}
+        else if (sender.district==1){proposals[random_vote()].Votes_District1 += 1;}
+        else if (sender.district==2){proposals[random_vote()].Votes_District2 += 1;}
+        else if (sender.district==3){proposals[random_vote()].Votes_District3 += 1;}
+        else if (sender.district==4){proposals[random_vote()].Votes_District4 += 1;}
+        else if (sender.district==5){proposals[random_vote()].Votes_District5 += 1;}
+        else if (sender.district==6){proposals[random_vote()].Votes_District6 += 1;}
+        else if (sender.district==7){proposals[random_vote()].Votes_District7 += 1;}
+        else if (sender.district==8){proposals[random_vote()].Votes_District8 += 1;}
+        else {proposals[random_vote()].Votes_District9 += 1;}
     }
 
     function res(uint _id) public view returns(Proposal memory){

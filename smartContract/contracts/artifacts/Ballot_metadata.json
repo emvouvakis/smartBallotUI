@@ -122,11 +122,6 @@
 				"name": "voters",
 				"outputs": [
 					{
-						"internalType": "uint256",
-						"name": "weight",
-						"type": "uint256"
-					},
-					{
 						"internalType": "bool",
 						"name": "voted",
 						"type": "bool"
@@ -176,11 +171,11 @@
 	},
 	"sources": {
 		"smartContract/contracts/3_Ballot.sol": {
-			"keccak256": "0xfacacf4e81b1ba82daccb7475d64cb06b6a6d2ba85023f9d734ac425e84ea488",
+			"keccak256": "0x6d4066e1444367c3fa5702c1bd7e7d26e3cfe54f6cb3a116cf27019feccf6edd",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://318bf84b6dd3d547593a2f820a9ecf572417c85dbdb94aea2763009d63a42078",
-				"dweb:/ipfs/QmTYk4mydsq6iDrBEYToHUCPC26f1kiLPLyaXQUCpkG9eK"
+				"bzz-raw://96ff2f704f7952b253752311b6e3c5943a2202f58ba2c1ff7e2c835dab98c282",
+				"dweb:/ipfs/Qmci4ckvH1e3DEVyWqy11sncAGPJcVZwwqMgfo5ynJPwmf"
 			]
 		}
 	},
