@@ -1,4 +1,4 @@
-const contractAddress = "0x0e4a596159ed94EC75c3359632eDD93C88e7a456";
+const contractAddress = "0x9BE4dd8255AF2FF6ca2d62258285996fe00F47D5";
 
 async function getABI() {
   let abi_;
@@ -138,6 +138,11 @@ async function showResults(){
       addCell(row, data[j]);
     }
   }
+
+  await ballot.methods.countV().call().then((result) => countV_= result)
+  var row = body.insertRow();
+  addCell(row, 'Total');
+  addCell(row, countV_);
 }
 
 
@@ -163,9 +168,11 @@ async function start_voting(){
       ballot.methods.vote().send({from: accounts[i],gas:'500000'});
     }
 
+
     // await ballot.methods.countV().call().then((result) => {countV_ = result})
-    setTimeout( async function() { alert(countV_ + 'Addresses votes successfully!'); }, 10);
-    // alert(countV_ + 'Addresses votes successfully!');
+    // setTimeout( async function() { alert(countV_ + 'Addresses votes successfully!'); }, 10);
+    alert('Addresses votes successfully!');
+    if (accounts.length>20){ alert('Reached max voters')};
   } else {
     alert('Addresses have already voted !');
   }

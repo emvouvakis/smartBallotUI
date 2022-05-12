@@ -88,7 +88,7 @@ contract Ballot {
             "The voter already voted.");
 
         // voters[msg.sender].weight = 1;
-        require(countV<=100,"Reached max voters.");
+        require(countV<=20,"Reached max voters.");
 
         voters[msg.sender].district=random_district();
 
