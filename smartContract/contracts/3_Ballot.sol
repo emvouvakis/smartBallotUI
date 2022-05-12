@@ -6,9 +6,9 @@ pragma solidity >=0.7.0 <0.9.0;
 contract Ballot {
    
     struct Voter {
-        bool voted;  // if true, that person already voted
-        uint district; // randomly chosen number between 0 and 9
-        uint vote;   // randomly chosen number between 0 and 4
+        bool voted;  // If true, that person already voted
+        uint district; // Randomly chosen number between 0 and 9
+        uint vote;   // Randomly chosen number between 0 and 4
     }
 
     struct Proposal {
@@ -27,18 +27,15 @@ contract Ballot {
     }
 
     mapping(address => Voter) public voters;
-
     Proposal[] private proposals;
 
-    
-    function random_district() private view returns(uint){
-        return uint(keccak256(abi.encodePacked(block.timestamp,block.difficulty,  
-        msg.sender))) % 10;
-    }
-    
+    //Initiates contract
     constructor() {
+
+        //Candidates
         string[5] memory proposalNames = ["a","b","c","d","e"];
         require(proposalNames.length==5,"Candidates must be 5.");
+
         for (uint i = 0; i < proposalNames.length; i++) {
             proposals.push(Proposal({
                 name: proposalNames[i],
@@ -57,13 +54,10 @@ contract Ballot {
         }
     }
 
-    //counting the number of voters
+    //Counters for the number of voters
     int public countV = 0;
-    // function countVoters() private {
-    //     countV += 1;
-    // }
 
-    //counting the number of voters for each district
+    //Counters for the number of voters for each district
     int public d0 = 0;
     int public d1 = 0;
     int public d2 = 0;
@@ -75,27 +69,13 @@ contract Ballot {
     int public d8 = 0;
     int public d9 = 0;
 
-    // function district0() private {
-    //     d0 += 1;}
-    // function district1() private {
-    //     d1 += 1;}
-    // function district2() private {
-    //     d2 += 1;}
-    // function district3() private {
-    //     d3 += 1;}
-    // function district4() private {
-    //     d4 += 1;}
-    // function district5() private {
-    //     d5 += 1;}
-    // function district6() private {
-    //     d6 += 1;}
-    // function district7() private {
-    //     d7 += 1;}
-    // function district8() private {
-    //     d8 += 1;}
-    // function district9() private {
-    //     d9 += 1;}
-
+    //Create random number between 0 and 9 to use as distict number
+    function random_district() private view returns(uint){
+        return uint(keccak256(abi.encodePacked(block.timestamp,block.difficulty,  
+        msg.sender))) % 10;
+    }
+    
+    //Create random number between 0 and 4 to use as vote
     function random_vote() private view returns(uint){
             return uint(keccak256(abi.encodePacked(block.timestamp,block.difficulty,  
             msg.sender))) % 5;
@@ -103,20 +83,22 @@ contract Ballot {
 
     function vote() public {
 
+        //Restrictions
         require(!voters[msg.sender].voted, "The voter already voted.");
-
         require(countV<100,"Reached max voters.");
 
+        //Choosing random district
         voters[msg.sender].district=random_district();
 
         Voter storage sender = voters[msg.sender];
         require(!sender.voted, "Already voted.");
         sender.voted = true;
 
+        //Choosing random vote
         sender.vote = random_vote();
-        // countVoters();
+
+        //Incrementing Counters
         countV += 1;
-        
         proposals[random_vote()].Total_Votes += 1;
         if (sender.district==0){proposals[random_vote()].Votes_District0 += 1;d0+=1;}
         else if (sender.district==1){proposals[random_vote()].Votes_District1 += 1;d1+=1;}
@@ -135,33 +117,3 @@ contract Ballot {
     }
 
 }
-//     function winningProposal() public view
-//             returns (uint winningProposal_, uint[] memory winners)
-//     {
-//         //uint[] winners;
-//         uint winningVoteCount = 0;
-//         //require(proposals.length==countV);
-//         //require(count2==countV,"oloi");
-//         for (uint p = 0; p < proposals.length; p++) {
-//             if (proposals[p].Total_Votes > winningVoteCount) {
-//                 winningVoteCount = proposals[p].Total_Votes;
-//                 winningProposal_ = p;
-                
-//             }
-//         }
-//         for (uint p = 0; p < proposals.length; p++) {
-//             if (proposals[p].Total_Votes == winningVoteCount) {
-//                 winners.push(proposals[p]);
-//             }
-//         }
-
-//     }
-
-//     function winnerName() public view
-//             returns (string memory winnerName_)
-//     {
-//         // require(count2==countV+1,"Everyone that has the right must vote.");
-//         winnerName_ = proposals[winningProposal()].name;
-//     }
-// }
-
