@@ -135,34 +135,13 @@ async function showResults(){
     }
   }
 
-  //Call counters 
+  //Call counter
   await ballot.methods.countV().call().then((result) => countV_= result)
-  await ballot.methods.d0().call().then((result) => d0_= result)
-  await ballot.methods.d1().call().then((result) => d1_= result)
-  await ballot.methods.d2().call().then((result) => d2_= result)
-  await ballot.methods.d3().call().then((result) => d3_= result)
-  await ballot.methods.d4().call().then((result) => d4_= result)
-  await ballot.methods.d5().call().then((result) => d5_= result)
-  await ballot.methods.d6().call().then((result) => d6_= result)
-  await ballot.methods.d7().call().then((result) => d7_= result)
-  await ballot.methods.d8().call().then((result) => d8_= result)
-  await ballot.methods.d9().call().then((result) => d9_= result)
- 
 
   //Show counters in the last row
   var row = body.insertRow();
   addCell(row, 'Total');
   addCell(row, countV_);
-  addCell(row, d0_);
-  addCell(row, d1_);
-  addCell(row, d2_);
-  addCell(row, d3_);
-  addCell(row, d4_);
-  addCell(row, d5_);
-  addCell(row, d6_);
-  addCell(row, d7_);
-  addCell(row, d8_);
-  addCell(row, d9_);
 }
 
 //Automate voting process for all accounts
