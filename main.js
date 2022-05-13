@@ -167,7 +167,7 @@ async function start_voting(){
       ballot.methods.vote().send({from: accounts[i],gas:'500000'});
     }
 
-    alert('Addresses votes successfully !');
+    alert('Addresses voted successfully !');
 
     //Alert for max 100 voters
     if (accounts.length>100){ alert('Reached max voters')};
