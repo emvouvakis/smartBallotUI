@@ -170,7 +170,7 @@ async function start_voting(){
     alert('Addresses voted successfully !');
 
     //Alert for max 100 voters
-    if (accounts.length>100){ alert('Reached max voters')};
+    if (accounts.length>100){ alert('Reached max voters !')};
   } else {
     alert('Addresses have already voted !');
   }
